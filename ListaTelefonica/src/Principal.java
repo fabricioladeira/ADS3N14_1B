@@ -1,24 +1,25 @@
 
 import ListaEncadeada.ListaEncadeada;
+import ListaEncadeada.ListaOrdenada;
+import mvc.controller.ListaTelefonicaController;
 import mvc.controller.PessoaController;
+import mvc.model.Pessoa;
 import mvc.view.CompactView;
 import mvc.view.ExtendedView;
 import mvc.view.MenuHelpView;
 
 public class Principal {
-
+	
+	private static ListaEncadeada<Pessoa> lista = new ListaEncadeada<Pessoa>();
+		
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub		
 		
-		//Cria o obj de controle de pessoa
-		PessoaController controller = new PessoaController();
-		
-		
-		//Cria e carrega a lista de contatos a primeira vez
-		controller.criarContato();	
+		//Cria controler da Lista Telefonica
+		ListaTelefonicaController controller = new ListaTelefonicaController(lista);
 		controller.exibirMenuOpcoes();
 		
 		

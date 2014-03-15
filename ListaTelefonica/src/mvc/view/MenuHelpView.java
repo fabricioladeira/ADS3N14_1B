@@ -1,6 +1,6 @@
 package mvc.view;
 
-public class MenuHelpView {
+public class MenuHelpView extends AgendaView {
 	
 	public void Exibir()
 	{

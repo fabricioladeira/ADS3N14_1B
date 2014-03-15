@@ -16,13 +16,21 @@ public class Pessoa implements Comparable<Pessoa> {
 	}
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
-		
+	}	
+	
 	@Override
 	public int compareTo(Pessoa pessoa) {  
         // TODO Auto-generated method stub  
-        return this.nome.compareTo(pessoa.getNome());  
+		if(this.nome.compareTo(pessoa.getNome()) > 0)
+			return 1;
+		else 
+			return -1;
+		
+				
+        //return this.nome.compareTo(pessoa.getNome());  
     }  
+    
+    
 	
 	
 	/*
@@ -32,5 +40,6 @@ public class Pessoa implements Comparable<Pessoa> {
         return 1;         //n1 vem depois de n2 na ordenação  
      }   
      */
+     
 	
 }

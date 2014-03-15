@@ -1,5 +1,8 @@
 package ListaEncadeada;
 
+import static java.lang.System.out;
+
+
 import mvc.model.Pessoa;
 
 public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
@@ -25,7 +28,6 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 	public void insert(Nodo<T> novo)
 	{
 		Nodo<T> anterior = procuraNodo(novo.getData());
-
 		
 		if (anterior != null) {
 			novo.setNext(anterior.getNext());
@@ -54,6 +56,8 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 	}
 	
 	public static void main(String[] args) {
+		
+		
 		// criar lista
 		ListaOrdenada<Pessoa> lista = new ListaOrdenada<Pessoa>();
 				
@@ -77,16 +81,33 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 		lista.append(novo2);
 		lista.append(novo3);
 		
-		/*
-		Nodo<Pessoa> novo = new Nodo<Pessoa>(1);
-		lista.insert(novo);
-		lista.insert(new Nodo<Integer>(4), novo);
+		Nodo<Pessoa> elem = lista.getHead();
+		do {
+			out.println(((Pessoa)elem.getData()).getNome() + "  Telefone: " + ((Pessoa)elem.getData()).getTelefone());
+			elem = elem.getNext();
+		} while (elem != null);		
 		
+	
+		
+		
+	/*
+		
+		// criar lista
+		ListaOrdenada<Integer> lista = new ListaOrdenada<Integer>();
+		
+		Nodo<Integer> novo = new Nodo<Integer>(1);
+		lista.append(novo);		
 		lista.append(new Nodo<Integer>(3));
-		lista.insert(new Nodo<Integer>(2), novo);	
-		*/
+		lista.append(new Nodo<Integer>(2));		
+		lista.append(new Nodo<Integer>(4));
 		
 		lista.print();
+		
+		*/
+		
+		
+		
+		
 	}
 
 }

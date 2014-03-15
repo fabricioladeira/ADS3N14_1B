@@ -31,15 +31,7 @@ public class ListaTelefonicaController {
 	}
 	
 	
-	public void criarContato()
-	{	
-		contato = new Pessoa();
-		contato.setNome("Rafael");
-		contato.setTelefone("555-1234");
 		
-		InserirContato(contato);
-	}
-	
 	//Insere contato na lista
 	public void InserirContato(Pessoa contato)
 	{		

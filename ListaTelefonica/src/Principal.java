@@ -24,6 +24,8 @@ public class Principal {
 		
 		
 		
+		
+		
 		//controller.exibirContato(new ExtendedView());
 		//controller.exibirContato(new CompactView());		
 		

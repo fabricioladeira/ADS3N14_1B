@@ -1,4 +1,10 @@
 package mvc.controller;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 import ListaEncadeada.ListaEncadeada;
 import ListaEncadeada.ListaOrdenada;
 import ListaEncadeada.Nodo;
@@ -15,25 +21,42 @@ public class PessoaController {
 	}
 	
 	public void criarContato()
-	{	
-		Pessoa contato = new Pessoa();
-		contato.setNome("Rafael");
-		contato.setTelefone("555-1234");
+	{						
 		
+		//Pega o diretorio da app
+		String workingDir = System.getProperty("user.dir");
 		
-		Pessoa contato2 = new Pessoa();
-		contato2.setNome("Adriana");
-		contato2.setTelefone("212-2121");
+		//Abre arquivo
+		File file = new File(workingDir + "\\src\\dados.txt");
+		BufferedReader reader = null;	
 		
-		
-		Pessoa contato3 = new Pessoa();
-		contato3.setNome("Zé");
-		contato3.setTelefone("12-1212");
-		
-		
-		InserirContato(contato);
-		InserirContato(contato2);
-		InserirContato(contato3);
+		try {
+		    reader = new BufferedReader(new FileReader(file));
+		    String text = null;
+
+		    while ((text = reader.readLine()) != null) {		    	
+		    	
+		    	String[] linha = text.split("\\|");
+		    	
+		    	Pessoa p = new Pessoa();
+				p.setNome(linha[0]);
+				p.setTelefone(linha[1]);
+				
+				InserirContato(p);
+		        
+		    }
+		} catch (FileNotFoundException e) {
+		    e.printStackTrace();
+		} catch (IOException e) {
+		    e.printStackTrace();
+		} finally {
+		    try {
+		        if (reader != null) {
+		            reader.close();
+		        }
+		    } catch (IOException e) {
+		    }
+		}		
 	}
 	
 	//Insere contato na lista

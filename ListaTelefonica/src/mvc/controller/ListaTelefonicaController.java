@@ -11,20 +11,14 @@ import mvc.view.ExtendedView;
 import mvc.view.ListView;
 import mvc.view.MenuHelpView;
 
-import java.io.Console;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Scanner;
-import static java.lang.System.out;
 
 public class ListaTelefonicaController {
 
-	public ListaEncadeada<Pessoa> lista;
+	public ListaOrdenada<Pessoa> lista;
 	private Pessoa contato;	
 	private PessoaController controller;
 	
-	public ListaTelefonicaController(ListaEncadeada<Pessoa> value)
+	public ListaTelefonicaController(ListaOrdenada<Pessoa> value)
 	{
 		lista = value;	
 		
@@ -96,7 +90,17 @@ public class ListaTelefonicaController {
 								
 							break;		
 							
-						
+						case "Digitar a primeira letra do nome.!":
+							
+							break;
+							
+						case "Avançar para o próximo contato":
+							
+							break;
+							
+						case "Voltar para o contato anterior":
+							
+							break;
 							
 						case "HELP": // HELP
 							MenuHelpView view = new MenuHelpView();

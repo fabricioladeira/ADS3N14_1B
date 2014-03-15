@@ -10,7 +10,7 @@ import mvc.view.MenuHelpView;
 
 public class Principal {
 	
-	private static ListaEncadeada<Pessoa> lista = new ListaEncadeada<Pessoa>();
+	private static ListaOrdenada<Pessoa> lista = new ListaOrdenada<Pessoa>();
 		
 	/**
 	 * @param args

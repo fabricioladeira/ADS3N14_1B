@@ -1,14 +1,15 @@
 package mvc.controller;
 import ListaEncadeada.ListaEncadeada;
+import ListaEncadeada.ListaOrdenada;
 import ListaEncadeada.Nodo;
 import mvc.model.Pessoa;
 import mvc.view.ContatoView;
 
 public class PessoaController {
 	
-	ListaEncadeada<Pessoa> lista;
+	private ListaOrdenada<Pessoa> lista;
 	
-	public PessoaController(ListaEncadeada<Pessoa> value)
+	public PessoaController(ListaOrdenada<Pessoa> value)
 	{
 		lista = value;	
 	}
@@ -19,7 +20,20 @@ public class PessoaController {
 		contato.setNome("Rafael");
 		contato.setTelefone("555-1234");
 		
+		
+		Pessoa contato2 = new Pessoa();
+		contato2.setNome("Adriana");
+		contato2.setTelefone("212-2121");
+		
+		
+		Pessoa contato3 = new Pessoa();
+		contato3.setNome("Zé");
+		contato3.setTelefone("12-1212");
+		
+		
 		InserirContato(contato);
+		InserirContato(contato2);
+		InserirContato(contato3);
 	}
 	
 	//Insere contato na lista

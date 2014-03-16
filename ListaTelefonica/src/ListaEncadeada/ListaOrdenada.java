@@ -43,11 +43,23 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 			
 		} else {
 			if (tail != null) {
-				tail.setNext(novo);
+				
+				int test = novo.getData().compareTo(head.getData());
+				if(test < 0)
+				{
+					novo.setNext(head);					
+					head = novo;					
+				}
+				else
+				{
+					tail.setNext(novo);
+				}
+				
 			} else {
 				head = novo;
+				tail = novo;
 			}
-			tail = novo;
+			
 		}
 	}
 	

@@ -19,8 +19,8 @@ public class Principal {
 		// TODO Auto-generated method stub		
 		
 		//Exibe Help
-				MenuHelpView view = new MenuHelpView();
-				view.Exibir();
+		MenuHelpView view = new MenuHelpView();
+		view.Exibir();
 		
 		//Cria controler da Lista Telefonica
 		ListaTelefonicaController controller = new ListaTelefonicaController(lista);

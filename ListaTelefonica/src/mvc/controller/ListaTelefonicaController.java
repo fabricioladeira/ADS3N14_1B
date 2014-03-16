@@ -26,7 +26,7 @@ public class ListaTelefonicaController {
 		controller = new PessoaController(lista);	
 		
 		//Cria e carrega a lista de contatos a primeira vez		
-		controller.criarContato();		
+		controller.criarContatos();		
 		
 	}
 	

@@ -18,10 +18,13 @@ public class Principal {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub		
 		
+		//Exibe Help
+				MenuHelpView view = new MenuHelpView();
+				view.Exibir();
+		
 		//Cria controler da Lista Telefonica
 		ListaTelefonicaController controller = new ListaTelefonicaController(lista);
 		controller.exibirMenuOpcoes();
-		
 		
 		
 		

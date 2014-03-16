@@ -20,7 +20,7 @@ public class PessoaController {
 		lista = value;	
 	}
 	
-	public void criarContato()
+	public void criarContatos()
 	{						
 		
 		//Pega o diretorio da app
@@ -41,6 +41,7 @@ public class PessoaController {
 		    	Pessoa p = new Pessoa();
 				p.setNome(linha[0]);
 				p.setTelefone(linha[1]);
+				
 				
 				InserirContato(p);
 		        

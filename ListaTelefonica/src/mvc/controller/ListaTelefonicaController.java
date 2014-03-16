@@ -49,6 +49,12 @@ public class ListaTelefonicaController {
 	//Exibe menu de opções
 	public void exibirMenuOpcoes()
 	{
+		//Inicializa varial da view do contato
+		ContatoView viewContato = null;
+		
+		//Pega primeira pessoa na posição para fazer a navegação
+		Nodo<Pessoa> pessoa = lista.getHead();
+		
 		Scanner entrada = new Scanner(System.in); // Já consigo separara a linha e pegar o tipo não precisa
 		
 		String comand = "";	
@@ -82,22 +88,25 @@ public class ListaTelefonicaController {
 								
 							break;		
 							
-						case "Digitar a primeira letra do nome.!":
+						case "NAVEGAR":
 							
 							break;
 							
-						case "Avançar para o próximo contato":
-							
+						case "PROXIMO":
+							ContatoView view = new ExtendedView();
+							pessoa = pessoa.getNext();
+							view.printContato(pessoa.getData().getNome(), pessoa.getData().getNome());							
 							break;
 							
-						case "Voltar para o contato anterior":
+						case "ANTERIOR":
+							viewContato = new ExtendedView();							
+							//view.printContato(pessoa.g, telefone)
 							
 							break;
 							
 						case "HELP": // HELP
-							MenuHelpView view = new MenuHelpView();
-							view.Exibir();
-								
+							MenuHelpView viewHelp = new MenuHelpView();
+							viewHelp.Exibir();								
 							break;			
 						
 							

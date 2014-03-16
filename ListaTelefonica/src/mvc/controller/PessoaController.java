@@ -73,5 +73,20 @@ public class PessoaController {
 		view.printContato(contato.getNome(), contato.getTelefone());
 	}	
 	
+	/*
+	 * Retorna pessoa Anterior
+	 */
+	public Nodo<Pessoa> getAnterior(Nodo<Pessoa> pessoa)
+	{
+		Nodo<Pessoa> inicio = lista.getHead();
+		Nodo<Pessoa> anterior = null;
+		
+		while (inicio != pessoa) {
+			anterior = 	inicio;		
+		    inicio = inicio.getNext();
+		}
+		
+		return anterior;
+	}
 	
 }

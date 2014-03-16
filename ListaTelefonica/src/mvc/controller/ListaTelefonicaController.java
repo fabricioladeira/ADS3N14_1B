@@ -93,14 +93,19 @@ public class ListaTelefonicaController {
 							break;
 							
 						case "PROXIMO":
-							ContatoView view = new ExtendedView();
-							pessoa = pessoa.getNext();
-							view.printContato(pessoa.getData().getNome(), pessoa.getData().getNome());							
+							viewContato = new ExtendedView();
+							if(pessoa.getNext() != null)								
+								pessoa = pessoa.getNext();
+							
+							viewContato.printContato(pessoa.getData().getNome(), pessoa.getData().getNome());							
 							break;
 							
 						case "ANTERIOR":
-							viewContato = new ExtendedView();							
-							//view.printContato(pessoa.g, telefone)
+							viewContato = new ExtendedView();	
+							if(pessoa != lista.getHead())
+								pessoa = controller.getAnterior(pessoa);
+							
+							viewContato.printContato(pessoa.getData().getNome(), pessoa.getData().getNome());		
 							
 							break;
 							

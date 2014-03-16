@@ -72,7 +72,8 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 	@Override
 	public void append(Nodo<T> novo) {
 		insert(novo);
-	}
+	}	
+	
 
 
 }

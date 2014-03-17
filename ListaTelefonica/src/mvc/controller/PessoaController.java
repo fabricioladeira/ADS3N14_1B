@@ -89,4 +89,39 @@ public class PessoaController {
 		return anterior;
 	}
 	
+	/*
+	 * Bunsca por nome
+	 */
+	public Nodo<Pessoa> findPessoa(String nome)
+	{
+		Nodo<Pessoa> inicio = lista.getHead();		
+	
+		while (inicio.getData().getNome().toUpperCase() != nome.toUpperCase()) {			
+		   lista.remove(inicio);
+		}
+		
+		return inicio;
+	}
+	
+	
+	/*
+	 * Remove uma determinada pessoa da lista
+	 */
+	public void removePessoa(String nome)
+	{
+		Nodo<Pessoa> inicio = lista.getHead();		
+	
+		while (inicio != lista.getTail()) {		
+		
+		   int cmp = inicio.getData().getNome().toUpperCase().compareTo(nome.toUpperCase());
+		   if(cmp == 0)
+		   {
+			   lista.remove(inicio);
+			   break;
+		   }		   
+		   inicio = inicio.getNext();
+		}		
+		
+	}
+	
 }

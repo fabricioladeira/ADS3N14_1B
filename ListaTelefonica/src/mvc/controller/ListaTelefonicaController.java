@@ -81,6 +81,10 @@ public class ListaTelefonicaController {
 							controller.exibirContato(new ExtendedView(), contato);							
 							break;
 		
+						case "REMOVER":
+							controller.removePessoa(entrada.next());							
+							break;
+							
 						case "LISTAR":												
 							//Implementar rotina de salvar						
 							ListView listView = new ListView();
@@ -89,6 +93,7 @@ public class ListaTelefonicaController {
 							break;		
 							
 						case "NAVEGAR":
+							System.out.println("Digite uma letra para navegar:");
 							
 							break;
 							

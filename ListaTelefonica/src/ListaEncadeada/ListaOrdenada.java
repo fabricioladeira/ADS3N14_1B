@@ -74,7 +74,34 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 		insert(novo);
 	}	
 	
-
+	
+	//Remove n
+	public void remove(Nodo<T> nodo)
+	{
+		Nodo<T> inicio = this.getHead();
+		Nodo<T> anterior = null;
+				
+		while(inicio != this.getTail())
+		{		
+			if(nodo == inicio)
+			{
+				if(anterior != null)
+				{
+					anterior.setNext(inicio.getNext());
+				}
+				else
+				{					
+					inicio.getNext();					
+				}				
+			}		
+			
+			anterior = inicio;			
+			
+			inicio = inicio.getNext();
+			
+		}
+		
+	}
 
 }
 

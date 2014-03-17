@@ -80,6 +80,11 @@ public class ListaTelefonicaController {
 							controller.InserirContato(contato);
 							controller.exibirContato(new ExtendedView(), contato);							
 							break;
+							
+						case "BUSCAR":
+							//Listar digitando um nome							
+							controller.findPessoa(entrada.next());							
+							break;
 		
 						case "REMOVER":
 							controller.removePessoa(entrada.next());							
@@ -91,12 +96,7 @@ public class ListaTelefonicaController {
 							listView.printContatos(lista);
 								
 							break;		
-							
-						case "NAVEGAR":
-							System.out.println("Digite uma letra para navegar:");
-							
-							break;
-							
+												
 						case "PROXIMO":
 							viewContato = new ExtendedView();
 							if(pessoa.getNext() != null)								
@@ -118,9 +118,10 @@ public class ListaTelefonicaController {
 							MenuHelpView viewHelp = new MenuHelpView();
 							viewHelp.Exibir();								
 							break;			
-						
+													
+						default:				
 							
-						default:
+							
 							System.out.println("Comando invalido digite HELP...");
 							break;
 					}

@@ -2,7 +2,6 @@ package mvc.view;
 
 import static java.lang.System.out;
 import mvc.model.Pessoa;
-import ListaEncadeada.ListaEncadeada;
 import ListaEncadeada.ListaOrdenada;
 import ListaEncadeada.Nodo;
 public class ListView {

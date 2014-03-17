@@ -10,6 +10,7 @@ import ListaEncadeada.ListaOrdenada;
 import ListaEncadeada.Nodo;
 import mvc.model.Pessoa;
 import mvc.view.ContatoView;
+import mvc.view.ListBuscaView;
 
 public class PessoaController {
 	
@@ -92,15 +93,11 @@ public class PessoaController {
 	/*
 	 * Bunsca por nome
 	 */
-	public Nodo<Pessoa> findPessoa(String nome)
+	public void findPessoa(String palavrachave)
 	{
-		Nodo<Pessoa> inicio = lista.getHead();		
-	
-		while (inicio.getData().getNome().toUpperCase() != nome.toUpperCase()) {			
-		   lista.remove(inicio);
-		}
+		ListBuscaView viewBusca = new ListBuscaView();
+		viewBusca.findPessoa(palavrachave, lista);		
 		
-		return inicio;
 	}
 	
 	

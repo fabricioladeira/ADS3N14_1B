@@ -15,7 +15,7 @@ import mvc.view.MenuHelpView;
 public class ListaTelefonicaController {
 
 	public ListaOrdenada<Pessoa> lista;
-	private Pessoa contato = null;	
+	private Pessoa contato;	
 	private PessoaController controller;
 	
 	public ListaTelefonicaController(ListaOrdenada<Pessoa> value)
@@ -38,14 +38,7 @@ public class ListaTelefonicaController {
 		Nodo<Pessoa> pessoa = new Nodo<Pessoa>(contato);
 		lista.insert(pessoa);		
 	}
-	
-	public void exibirContato( ContatoView view )
-	{
-		view.printContato(contato);
-	}	
-	
-	
-	
+		
 	//Exibe menu de opções
 	public void exibirMenuOpcoes()
 	{

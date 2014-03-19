@@ -1,13 +1,14 @@
 package mvc.view;
 
 import static java.lang.System.out;
+import mvc.model.Pessoa;
 
 public class ExtendedView extends ContatoView {
 
-	public void printContato(String nome, String telefone)
+	public void printContato(Pessoa contato)
 	{
-		out.println("Nome: " + nome);
-		out.println("Telefone: " + telefone);
+		out.println("Nome: " + contato.getNome());
+		out.println("Telefone: " + contato.getTelefone());
 	}
 	
 }

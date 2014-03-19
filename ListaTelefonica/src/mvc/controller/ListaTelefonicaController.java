@@ -15,7 +15,7 @@ import mvc.view.MenuHelpView;
 public class ListaTelefonicaController {
 
 	public ListaOrdenada<Pessoa> lista;
-	private Pessoa contato;	
+	private Pessoa contato = null;	
 	private PessoaController controller;
 	
 	public ListaTelefonicaController(ListaOrdenada<Pessoa> value)
@@ -41,7 +41,7 @@ public class ListaTelefonicaController {
 	
 	public void exibirContato( ContatoView view )
 	{
-		view.printContato(contato.getNome(), contato.getTelefone());
+		view.printContato(contato);
 	}	
 	
 	
@@ -59,7 +59,7 @@ public class ListaTelefonicaController {
 		
 		String comand = "";	
 		
-		while (comand.toUpperCase() != "SAIR") {
+		while (!comand.toUpperCase().equals("SAIR")) {
 			
 			//Pega comando
 			comand = entrada.next(); // Pega so o string do commando Só pegando o retirar  next line e pegar o tipo que eu quero direto.
@@ -102,7 +102,7 @@ public class ListaTelefonicaController {
 							if(pessoa.getNext() != null)								
 								pessoa = pessoa.getNext();
 							
-							viewContato.printContato(pessoa.getData().getNome(), pessoa.getData().getNome());							
+							viewContato.printContato(pessoa.getData());							
 							break;
 							
 						case "ANTERIOR":
@@ -110,7 +110,7 @@ public class ListaTelefonicaController {
 							if(pessoa != lista.getHead())
 								pessoa = controller.getAnterior(pessoa);
 							
-							viewContato.printContato(pessoa.getData().getNome(), pessoa.getData().getNome());		
+							viewContato.printContato(pessoa.getData());		
 							
 							break;
 							

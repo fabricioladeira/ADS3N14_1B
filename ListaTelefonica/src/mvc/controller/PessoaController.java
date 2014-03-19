@@ -71,7 +71,7 @@ public class PessoaController {
 	//Exibe um contato
 	public void exibirContato(ContatoView view , Pessoa contato)
 	{
-		view.printContato(contato.getNome(), contato.getTelefone());
+		view.printContato(contato);
 	}	
 	
 	/*

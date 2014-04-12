@@ -64,10 +64,10 @@ public class Batalha {
 		int t = sorteio.nextInt(4);
 
 		// Sorteia a posição x inicial do navio
-		int x = sorteio.nextInt(9);
+		int x = sorteio.nextInt(10);
 
 		// Sorteia a posição y inicial do navio
-		int y = sorteio.nextInt(9);
+		int y = sorteio.nextInt(10);
 
 		// Sorteia a direção que o navio vai fica 1=Vertical ou 2 =
 		// Horizontal
@@ -136,7 +136,7 @@ public class Batalha {
 
 					// Acerto a navios
 					if (nav != null)
-						mapa[l][c] = " " + nav.getId() + "ID ";
+						mapa[l][c] = " " + nav.getId() + "  ";
 
 				} catch (Exception ex) {
 

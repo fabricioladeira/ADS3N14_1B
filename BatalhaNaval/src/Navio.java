@@ -66,23 +66,23 @@ public class Navio {
 		this.direcao = direcao;
 		
 		switch (id) {
-		case 1:
+		case 1://Porta Aviões
 			this.setTamanho(5);		
 			break;
 		
-		case 2:
+		case 2://Destroyers
 			this.setTamanho(4);		
 			break;
 			
-		case 3:
+		case 3://fragatas
 			this.setTamanho(3);		
 			break;
 			
-		case 4:
+		case 4://torpedeiros
 			this.setTamanho(2);		
 			break;
 			
-		case 5:
+		case 5://submarinos
 			this.setTamanho(1);		
 			break;
 

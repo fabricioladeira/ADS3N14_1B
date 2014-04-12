@@ -38,7 +38,7 @@ public class Batalha {
 				Navio navioColisao = null;
 
 				try {
-					navioColisao = GetNavio(navioSorteado.getX(), navioSorteado.getY());
+					navioColisao = GetNavio(navioSorteado.getY(), navioSorteado.getX());
 									
 					if(navioColisao == null)
 						navios[navioSorteado.getX()][navioSorteado.getY()] = navioSorteado;
@@ -136,7 +136,7 @@ public class Batalha {
 
 					// Acerto a navios
 					if (nav != null)
-						mapa[l][c] = " " + nav.getId() + "  ";
+						mapa[l][c] = " " + nav.getId() + "ID ";
 
 				} catch (Exception ex) {
 

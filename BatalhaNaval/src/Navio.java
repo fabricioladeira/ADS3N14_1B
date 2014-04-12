@@ -7,6 +7,9 @@ public class Navio {
 	//Tamanho do Navio
 	private int tamanho;
 	
+	//Direcao 1= Vertical ou 2 = Horizontal
+	private int direcao;
+	
 	//Posicao Inicial X
 	private int X;
 	
@@ -46,8 +49,22 @@ public class Navio {
 		this.id = id;
 	}
 	
-	public Navio(int id, int x, int y)
+	public int getDirecao() {
+		return direcao;
+	}
+
+	public void setDirecao(int direcao) {
+		this.direcao = direcao;
+	}
+	
+	public Navio(int id, int x, int y, int direcao)
 	{
+		
+		this.id = id;
+		this.X = x;
+		this.Y = y;
+		this.direcao = direcao;
+		
 		switch (id) {
 		case 1:
 			this.setTamanho(5);		
@@ -74,6 +91,8 @@ public class Navio {
 		}
 		
 	}
+
+
 
 
 

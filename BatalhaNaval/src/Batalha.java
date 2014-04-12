@@ -8,7 +8,7 @@ public class Batalha {
 			'I', 'J' };
 	public static int pontos = 15;
 	public static String[][] mapa = new String[10][10];
-	public static Navio[][] navios = new Navio[5][5];
+	public static Navio[][] navios = new Navio[10][10];
 
 	/**
 	 * @param args
@@ -19,7 +19,7 @@ public class Batalha {
 		out.println("Batalha Naval");
 
 		InicializaMapa();
-		InicializaNavios(1);
+		InicializaNavios(3);
 		MontaMapa();
 
 	}
@@ -32,62 +32,76 @@ public class Batalha {
 		Random sorteio = new Random();
 		for (int i = 0; i < numeroTotalNavios; i++) {
 
-			// Sorteia o tipo do Navio a ser usado
-			// 1. 1 “porta-aviões” com 5 unidades de tamanho.!
-			// 2. 2 “destroyers” com 4 unidades de tamanho.!
-			// 3. 2 “fragatas” com 3 unidades de tamanho.!
-			// 4. 3 “torpedeiros” com 2 unidades de tamanho.!
-			// 5. 5 submarinos, com 1 unidade de tamanho.!
-			int t = sorteio.nextInt(5);
-
-			// Sorteia a posição x inicial do navio
-			int x = 3; // sorteio.nextInt(10);
-
-			// Sorteia a posição y inicial do navio
-			int y = 2; // sorteio.nextInt(10);
-
-			// Sorteia a direção que o navio vai fica 1=Vertical ou 2 =
-			// Horizontal
-			int direcao = sorteio.nextInt(2);
-
-			// Cria Navio
-			Navio nav = new Navio(t, x, y,direcao);
-
-			// Verifica direcao = Vertical
-			if (direcao == 1) {
-
-				int totalCasasPreencher = nav.getTamanho() + y;
-				while (totalCasasPreencher > mapa.length) {
-					y -= 1;
-					totalCasasPreencher = nav.getTamanho() + y;
-				}
-
-				// Atualiza posição inicial
-				nav.setY(y);
+				Navio navioSorteado = SorteiaNavio(sorteio);
 				
+				// Verifica se não tem outro navio nessa posicao
+				Navio navioColisao = null;
 
-				// Coloca navio na posição dele.
-				navios[x][y] = nav;
-			}
-			else
-			{
-				//Coloca Navio posicionado da Horizontal
-				int totalCasasPreencher = nav.getTamanho() + x;
-				while (totalCasasPreencher > mapa.length) {
-					x -= 1;
-					totalCasasPreencher = nav.getTamanho() + x;
-				}
-
-				// Atualiza posição inicial
-				nav.setX(x);				
-
-				// Coloca navio na posição dele.
-				navios[x][y] = nav;
-			}
+				try {
+					navioColisao = GetNavio(navioSorteado.getX(), navioSorteado.getY());
+									
+					if(navioColisao == null)
+						navios[navioSorteado.getX()][navioSorteado.getY()] = navioSorteado;
+									
+				} catch (Exception e) {
+					// TODO: handle exception
+				}		
 				
 
 		}
 
+	}
+
+	
+	//Sorteia posicao inicial tipo e direcao do navio
+	private static Navio SorteiaNavio(Random sorteio) {
+		// Sorteia o tipo do Navio a ser usado
+		// 1. 1 “porta-aviões” com 5 unidades de tamanho.!
+		// 2. 2 “destroyers” com 4 unidades de tamanho.!
+		// 3. 2 “fragatas” com 3 unidades de tamanho.!
+		// 4. 3 “torpedeiros” com 2 unidades de tamanho.!
+		// 5. 5 submarinos, com 1 unidade de tamanho.!
+		int t = sorteio.nextInt(4);
+
+		// Sorteia a posição x inicial do navio
+		int x = sorteio.nextInt(9);
+
+		// Sorteia a posição y inicial do navio
+		int y = sorteio.nextInt(9);
+
+		// Sorteia a direção que o navio vai fica 1=Vertical ou 2 =
+		// Horizontal
+		int direcao = sorteio.nextInt(2);
+
+		// Cria Navio
+		Navio nav = new Navio(t, x, y, direcao);
+
+		// Verifica direcao = Vertical
+		if (direcao == 1) {
+
+			int totalCasasPreencher = nav.getTamanho() + y;
+			while (totalCasasPreencher > mapa.length) {
+				y -= 1;
+				totalCasasPreencher = nav.getTamanho() + y;
+			}
+
+			// Atualiza posição inicial
+			nav.setY(y);
+
+		} else {
+			// Coloca Navio posicionado da Horizontal
+			int totalCasasPreencher = nav.getTamanho() + x;
+			while (totalCasasPreencher > mapa.length) {
+				x -= 1;
+				totalCasasPreencher = nav.getTamanho() + x;
+			}
+
+			// Atualiza posição inicial
+			nav.setX(x);
+
+		}
+
+		return nav;
 	}
 
 	// Zera Mapa e Incializa
@@ -119,11 +133,11 @@ public class Batalha {
 				Navio nav = null;
 				try {
 					nav = GetNavio(l, c);
-					
-					//Acerto a navios
-					if(nav != null)
-						mapa[l][c] = " " + nav.getId() + "  "; 
-					
+
+					// Acerto a navios
+					if (nav != null)
+						mapa[l][c] = " " + nav.getId() + "  ";
+
 				} catch (Exception ex) {
 
 				}
@@ -140,44 +154,37 @@ public class Batalha {
 
 	// Verifica se tem um navio na posição e retorna ele.
 	private static Navio GetNavio(int l, int c) {
-		
+
 		Navio navio = null;
-		for (int il = 0; il < navios.length; il++) {			
+		for (int il = 0; il < navios.length; il++) {
 			for (int ic = 0; ic < navios.length; ic++) {
-				
-				if (navios[il][ic] != null)
-				{
-					//Pega Navio Atraves das cordenadas incial
+
+				if (navios[il][ic] != null) {
+					// Pega Navio Atraves das cordenadas incial
 					navio = navios[il][ic];
-					
-					
-					//Verifica direção dele para validar colisão 
-					if(navio.getDirecao() == 1)
-					{
+
+					// Verifica direção dele para validar colisão
+					if (navio.getDirecao() == 1) {
 						int destino = il + navio.getTamanho();
-						for (int y = il; y < destino; y++) {							
-							if(l == y && c == ic)
+						for (int y = il; y < destino; y++) {
+							if (l == y && c == ic)
 								return navio;
-						}						
-					}		
-					else
-					{
-						//Verifica Horizontal
+						}
+					} else {
+						// Verifica Horizontal
 						int destino = ic + navio.getTamanho();
-						for (int x = ic; x < destino; x++) {							
-							if(l == il && c == x)
+						for (int x = ic; x < destino; x++) {
+							if (l == il && c == x)
 								return navio;
-						}			
-						
+						}
+
 					}
-					
-					
+
 				}
-					//return navios[il][ic];
-				
-			}			
+				// return navios[il][ic];
+
+			}
 		}
-		
 
 		return null;
 	}

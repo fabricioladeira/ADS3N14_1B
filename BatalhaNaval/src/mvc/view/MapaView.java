@@ -9,15 +9,11 @@ import mvc.model.Navio;
 
 public class MapaView {
 
-	
-		
 	public static String[] cabecalho = { "A", "B", "C", "D", "E", "F", "G",
 			"H", "I", "J" };
 
 	public static void ImprimeMapa(String[][] mapa, int pontos, Boolean debug) {
-		
-		
-			
+
 		System.out.flush();
 		out.println("Pontos:" + pontos);
 
@@ -37,26 +33,22 @@ public class MapaView {
 
 			for (int c = 0; c < mapa.length; c++) {
 
-				
-				//Mostra Posicao
-				if(debug)
-				{
+				// Mostra Posicao
+				if (debug) {
 					Navio nav = null;
 					try {
 						nav = Batalha.GetNavio(l, c);
-	
+
 						// Acerto a navios
 						if (nav != null)
 							linha += " " + nav.getId() + "  ";
 						else
 							linha += " .  ";
-	
+
 					} catch (Exception ex) {
 						linha += " .  ";
 					}
-				}
-				else
-				{
+				} else {
 
 					linha += mapa[l][c];
 				}
@@ -94,27 +86,30 @@ public class MapaView {
 					if (col != -1) {
 
 						navio = Batalha.GetNavio(linha, col);
+						
+						//Se acertou
+						if (navio != null) {
+							//Valida se já não foi acertado antes
+							if (!mapa[linha][col].contains("O")) {
+								out.println("Acertou !!!");
 
-						if (navio != null)
-						{
-							out.println("Acertou !!!");
-							
-							//Ganha mais 3 pontos
-							pontos += 3;
-							
-							mapa[linha][col] = " O  ";
-							
-							
-							
-							
-						}
-						else
-						{
+								mapa[linha][col] = " O  ";
+								
+								// Marca pontos
+								if (Batalha.VerificaNavioDestruido(navio))
+									pontos += 5;
+								else
+									pontos += 3;
+
+								
+							}
+
+						} else {
 							mapa[linha][col] = " -  ";
-							
+
 						}
 					}
-					
+
 					ImprimeMapa(mapa, pontos, false);
 
 				} catch (Exception e) {
@@ -133,7 +128,8 @@ public class MapaView {
 	// Retorna Coluna convertida em posição
 	public static int ConvertColunaToInt(String coluna) {
 		for (int i = 0; i < cabecalho.length; i++) {
-			if (cabecalho[i].toString().toUpperCase().equals(coluna.toUpperCase()))
+			if (cabecalho[i].toString().toUpperCase()
+					.equals(coluna.toUpperCase()))
 				return i;
 		}
 

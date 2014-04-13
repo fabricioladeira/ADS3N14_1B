@@ -158,5 +158,57 @@ public class Batalha {
 
 		return null;
 	}
+	
+	
+	//Verifica se um determinado navio foi totalmente destruído
+	public static boolean VerificaNavioDestruido(Navio navio)
+	{
+		boolean destruido = false;
+		
+		int linha = navio.getX();
+		int coluna = navio.getY();
+		int tamanho = navio.getTamanho();
+		int direcao = navio.getDirecao(); // 1 = Vertical , 0 = Horizontal
+		int contaAcerto = 0;
+		
+		for (int l = 0; l < mapa.length; l++) {
+			for (int c = 0; c < mapa.length; c++) {
+				
+				if(l == linha && c == coluna)
+				{	
+					//Verifica direção e valida se o navio já foi todo abatido
+					if(direcao == 1)
+					{
+						int total = tamanho + linha;
+						for (int li = linha; li < total; li++) {
+							if(mapa[li][c].contains("O"))
+							{
+								contaAcerto++;	
+							}
+						}						
+					}
+					else
+					{
+						int total = tamanho + coluna;
+						for (int ci = coluna; ci < total; ci++) {
+							if(mapa[l][ci].contains("O"))
+							{
+								contaAcerto++;	
+							}
+						}
+					}
+					
+					break;
+				}
+			}
+		}
+		
+		//Se o Total de acertos for do tamanho do navio ele foi destruido
+		if(contaAcerto == tamanho)
+			destruido = true;
+		
+		
+		return destruido;
+	}
 
 }

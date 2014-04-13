@@ -43,25 +43,52 @@ public class Batalha {
 	private static void InicializaNavios(int numeroTotalNavios) {
 
 		Random sorteio = new Random();
-		for (int i = 0; i < numeroTotalNavios; i++) {
+		
+		// Porta Aviões
+		SortenadoNavios(sorteio, 1, 1);
 
-			Navio navioSorteado = SorteiaNavio(sorteio, 2);
+		// destroyers
+		SortenadoNavios(sorteio, 2, 2);
 
-			// Verifica se não tem outro navio nessa posicao
-			Navio navioColisao = null;
+		// fragatas;
+		SortenadoNavios(sorteio, 3, 2);
 
-			try {
-				navioColisao = GetNavio(navioSorteado.getY(),
-						navioSorteado.getX());
+		// torpedeiros;
+		SortenadoNavios(sorteio, 4, 3);
 
-				if (navioColisao == null)
-					navios[navioSorteado.getX()][navioSorteado.getY()] = navioSorteado;
+		// submarinos;
+		SortenadoNavios(sorteio, 5, 5);
+	}
 
-			} catch (Exception e) {
-				// TODO: handle exception
+	private static void SortenadoNavios(Random sorteio, int tipo, int total) {
+		int contador = 0;
+		while (contador != total) {
+			Navio navioSorteado = SorteiaNavio(sorteio, tipo);
+
+			if (!VerificaColisao(navioSorteado)) {
+				navios[navioSorteado.getX()][navioSorteado.getY()] = navioSorteado;
+				contador++;
 			}
-
 		}
+
+	}
+
+	private static boolean VerificaColisao(Navio navioSorteado) {
+		// Verifica se não tem outro navio nessa posicao
+		Navio navioColisao = null;
+
+		try {
+			navioColisao = GetNavio(navioSorteado.getY(), navioSorteado.getX());
+
+			if (navioColisao != null)
+				return true;
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+
+		return false;
 
 	}
 

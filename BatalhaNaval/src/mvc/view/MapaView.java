@@ -59,8 +59,6 @@ public class MapaView {
 
 		}
 
-		InputComandos(mapa, pontos);
-
 	}
 
 	public static void InputComandos(String[][] mapa, int pontos) {
@@ -68,6 +66,7 @@ public class MapaView {
 													// e pegar o tipo não
 													// precisa
 
+		boolean erro = false;
 		String comand = "";
 
 		while (pontos != 0) {
@@ -77,54 +76,53 @@ public class MapaView {
 				int linha = entrada.nextInt();
 				String coluna = entrada.next();
 
-				
-				
 				Navio navio = null;
 
-				try {
+				int col = ConvertColunaToInt(coluna);
 
-					int col = ConvertColunaToInt(coluna);
+				if (col != -1) {
 
-					if (col != -1) {
+					navio = Batalha.GetNavio(linha, col);
 
-						navio = Batalha.GetNavio(linha, col);
-						
-						//Se acertou
-						if (navio != null) {
-							//Valida se já não foi acertado antes
-							if (!mapa[linha][col].contains("O")) {
-								out.println("Acertou !!!");
+					// Se acertou
+					if (navio != null) {
+						// Valida se já não foi acertado antes
+						if (!mapa[linha][col].contains("O")) {
+							out.println("Acertou !!!");
 
-								mapa[linha][col] = " O  ";
-								
-								// Marca pontos
-								if (Batalha.VerificaNavioDestruido(navio))
-									pontos += 5;
-								else
-									pontos += 3;
+							mapa[linha][col] = " O  ";
 
-								
-							}
+							// Marca pontos
+							if (Batalha.VerificaNavioDestruido(navio))
+								pontos += 5;
+							else
+								pontos += 3;
 
-						} else {
-							mapa[linha][col] = " -  ";
-							pontos--;
 						}
+
+					} else {
+						mapa[linha][col] = " -  ";
+						pontos--;
 					}
-
-					ImprimeMapa(mapa, pontos, false);
-
-				} catch (Exception e) {
-					// TODO: handle exception
 				}
 
+				ImprimeMapa(mapa, pontos, false);
+
 			} catch (Exception ex) {
-				out.println("Error:");
+				out.println("Error: Você deve digitar linha e coluna EX: 3 d");
+				erro = true;
+				break;
+				
 			}
 
 		}
 
-		System.out.println("Fim");
+		if(erro)
+			InputComandos(mapa,pontos);
+			
+			
+			System.out.println("Fim do Jogo!!");
+
 	}
 
 	// Retorna Coluna convertida em posição

@@ -8,7 +8,6 @@ import mvc.model.Navio;
 
 import mvc.view.MapaView;
 
-
 public class Batalha {
 
 	public static boolean debug = true;
@@ -26,12 +25,15 @@ public class Batalha {
 
 		InicializaMapa();
 		InicializaNavios(3);
-		
-		//Se o parâmetro de debug estiver ligado acima ele mostra uma matriz com os navios colocados
-		if(debug)
+
+		// Se o parâmetro de debug estiver ligado acima ele mostra uma matriz
+		// com os navios colocados
+		if (debug)
 			MapaView.ImprimeMapa(mapa, pontos, true);
-		
+
 		MapaView.ImprimeMapa(mapa, pontos, false);
+
+		MapaView.InputComandos(mapa, pontos);
 
 	}
 
@@ -43,28 +45,27 @@ public class Batalha {
 		Random sorteio = new Random();
 		for (int i = 0; i < numeroTotalNavios; i++) {
 
-				Navio navioSorteado = SorteiaNavio(sorteio,2);
-				
-				// Verifica se não tem outro navio nessa posicao
-				Navio navioColisao = null;
+			Navio navioSorteado = SorteiaNavio(sorteio, 2);
 
-				try {
-					navioColisao = GetNavio(navioSorteado.getY(), navioSorteado.getX());
-									
-					if(navioColisao == null)
-						navios[navioSorteado.getX()][navioSorteado.getY()] = navioSorteado;
-									
-				} catch (Exception e) {
-					// TODO: handle exception
-				}		
-				
+			// Verifica se não tem outro navio nessa posicao
+			Navio navioColisao = null;
+
+			try {
+				navioColisao = GetNavio(navioSorteado.getY(),
+						navioSorteado.getX());
+
+				if (navioColisao == null)
+					navios[navioSorteado.getX()][navioSorteado.getY()] = navioSorteado;
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 
 		}
 
 	}
 
-	
-	//Sorteia posicao inicial tipo e direcao do navio
+	// Sorteia posicao inicial tipo e direcao do navio
 	private static Navio SorteiaNavio(Random sorteio, int tipoNavio) {
 		// Sorteia o tipo do Navio a ser usado
 		// 1. 1 “porta-aviões” com 5 unidades de tamanho.!
@@ -72,7 +73,7 @@ public class Batalha {
 		// 3. 2 “fragatas” com 3 unidades de tamanho.!
 		// 4. 3 “torpedeiros” com 2 unidades de tamanho.!
 		// 5. 5 submarinos, com 1 unidade de tamanho.!
-		int t = tipoNavio;//sorteio.nextInt(4);
+		int t = tipoNavio;// sorteio.nextInt(4);
 
 		// Sorteia a posição x inicial do navio
 		int x = sorteio.nextInt(10);
@@ -124,8 +125,6 @@ public class Batalha {
 		}
 	}
 
-	
-
 	// Verifica se tem um navio na posição e retorna ele.
 	public static Navio GetNavio(int l, int c) {
 
@@ -162,56 +161,47 @@ public class Batalha {
 
 		return null;
 	}
-	
-	
-	//Verifica se um determinado navio foi totalmente destruído
-	public static boolean VerificaNavioDestruido(Navio navio)
-	{
+
+	// Verifica se um determinado navio foi totalmente destruído
+	public static boolean VerificaNavioDestruido(Navio navio) {
 		boolean destruido = false;
-		
+
 		int linha = navio.getX();
 		int coluna = navio.getY();
 		int tamanho = navio.getTamanho();
 		int direcao = navio.getDirecao(); // 1 = Vertical , 0 = Horizontal
 		int contaAcerto = 0;
-		
+
 		for (int l = 0; l < mapa.length; l++) {
 			for (int c = 0; c < mapa.length; c++) {
-				
-				if(l == linha && c == coluna)
-				{	
-					//Verifica direção e valida se o navio já foi todo abatido
-					if(direcao == 1)
-					{
+
+				if (l == linha && c == coluna) {
+					// Verifica direção e valida se o navio já foi todo abatido
+					if (direcao == 1) {
 						int total = tamanho + linha;
 						for (int li = linha; li < total; li++) {
-							if(mapa[li][c].contains("O"))
-							{
-								contaAcerto++;	
+							if (mapa[li][c].contains("O")) {
+								contaAcerto++;
 							}
-						}						
-					}
-					else
-					{
+						}
+					} else {
 						int total = tamanho + coluna;
 						for (int ci = coluna; ci < total; ci++) {
-							if(mapa[l][ci].contains("O"))
-							{
-								contaAcerto++;	
+							if (mapa[l][ci].contains("O")) {
+								contaAcerto++;
 							}
 						}
 					}
-					
+
 					break;
 				}
 			}
 		}
-		
-		//Se o Total de acertos for do tamanho do navio ele foi destruido
-		if(contaAcerto == tamanho)
+
+		// Se o Total de acertos for do tamanho do navio ele foi destruido
+		if (contaAcerto == tamanho)
 			destruido = true;
-		
-		
+
 		return destruido;
 	}
 

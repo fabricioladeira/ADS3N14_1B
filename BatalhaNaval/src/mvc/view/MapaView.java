@@ -102,13 +102,20 @@ public class MapaView {
 							//Ganha mais 3 pontos
 							pontos += 3;
 							
-							mapa[linha][col] = " X  ";
+							mapa[linha][col] = " O  ";
 							
-							ImprimeMapa(mapa, pontos, false);
+							
 							
 							
 						}
+						else
+						{
+							mapa[linha][col] = " -  ";
+							
+						}
 					}
+					
+					ImprimeMapa(mapa, pontos, false);
 
 				} catch (Exception e) {
 					// TODO: handle exception

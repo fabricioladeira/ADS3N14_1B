@@ -43,7 +43,7 @@ public class Batalha {
 	private static void InicializaNavios(int numeroTotalNavios) {
 
 		Random sorteio = new Random();
-		
+
 		// Porta Aviões
 		SortenadoNavios(sorteio, 1, 1);
 
@@ -58,6 +58,7 @@ public class Batalha {
 
 		// submarinos;
 		SortenadoNavios(sorteio, 5, 5);
+
 	}
 
 	private static void SortenadoNavios(Random sorteio, int tipo, int total) {
@@ -66,7 +67,7 @@ public class Batalha {
 			Navio navioSorteado = SorteiaNavio(sorteio, tipo);
 
 			if (!VerificaColisao(navioSorteado)) {
-				navios[navioSorteado.getX()][navioSorteado.getY()] = navioSorteado;
+				navios[navioSorteado.getY()][navioSorteado.getX()] = navioSorteado;
 				contador++;
 			}
 		}
@@ -193,8 +194,8 @@ public class Batalha {
 	public static boolean VerificaNavioDestruido(Navio navio) {
 		boolean destruido = false;
 
-		int linha = navio.getX();
-		int coluna = navio.getY();
+		int linha = navio.getY();
+		int coluna = navio.getX();
 		int tamanho = navio.getTamanho();
 		int direcao = navio.getDirecao(); // 1 = Vertical , 0 = Horizontal
 		int contaAcerto = 0;

@@ -99,6 +99,8 @@ public class MapaView {
 								pontos += 3;
 
 						}
+						else
+							pontos--;
 
 					} else {
 						mapa[linha][col] = " -  ";

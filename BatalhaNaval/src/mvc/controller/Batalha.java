@@ -26,7 +26,8 @@ public class Batalha {
 
 		InicializaMapa();
 		InicializaNavios(3);
-		MapaView.ImprimeMapa(mapa, pontos);
+		MapaView.ImprimeMapa(mapa, pontos, true);
+		MapaView.ImprimeMapa(mapa, pontos, false);
 
 	}
 

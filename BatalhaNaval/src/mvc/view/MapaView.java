@@ -9,11 +9,16 @@ import mvc.model.Navio;
 
 public class MapaView {
 
+	
+		
 	public static String[] cabecalho = { "A", "B", "C", "D", "E", "F", "G",
 			"H", "I", "J" };
 
-	public static void ImprimeMapa(String[][] mapa, int pontos) {
-
+	public static void ImprimeMapa(String[][] mapa, int pontos, Boolean debug) {
+		
+		
+			
+		System.out.flush();
 		out.println("Pontos:" + pontos);
 
 		// Monta cabeçalho colunas
@@ -32,19 +37,29 @@ public class MapaView {
 
 			for (int c = 0; c < mapa.length; c++) {
 
-				Navio nav = null;
-				try {
-					nav = Batalha.GetNavio(l, c);
-
-					// Acerto a navios
-					if (nav != null)
-						mapa[l][c] = " " + nav.getId() + "  ";
-
-				} catch (Exception ex) {
-
+				
+				//Mostra Posicao
+				if(debug)
+				{
+					Navio nav = null;
+					try {
+						nav = Batalha.GetNavio(l, c);
+	
+						// Acerto a navios
+						if (nav != null)
+							linha += " " + nav.getId() + "  ";
+						else
+							linha += " .  ";
+	
+					} catch (Exception ex) {
+						linha += " .  ";
+					}
 				}
+				else
+				{
 
-				linha += mapa[l][c];
+					linha += mapa[l][c];
+				}
 
 			}
 
@@ -52,11 +67,11 @@ public class MapaView {
 
 		}
 
-		InputComandos();
+		InputComandos(mapa, pontos);
 
 	}
 
-	public static void InputComandos() {
+	public static void InputComandos(String[][] mapa, int pontos) {
 		Scanner entrada = new Scanner(System.in); // Já consigo separara a linha
 													// e pegar o tipo não
 													// precisa
@@ -81,7 +96,18 @@ public class MapaView {
 						navio = Batalha.GetNavio(linha, col);
 
 						if (navio != null)
+						{
 							out.println("Acertou !!!");
+							
+							//Ganha mais 3 pontos
+							pontos += 3;
+							
+							mapa[linha][col] = " X  ";
+							
+							ImprimeMapa(mapa, pontos, false);
+							
+							
+						}
 					}
 
 				} catch (Exception e) {

@@ -11,7 +11,7 @@ import mvc.view.MapaView;
 
 public class Batalha {
 
-	
+	public static boolean debug = true;
 	public static int pontos = 15;
 	public static String[][] mapa = new String[10][10];
 	public static Navio[][] navios = new Navio[10][10];
@@ -26,7 +26,11 @@ public class Batalha {
 
 		InicializaMapa();
 		InicializaNavios(3);
-		MapaView.ImprimeMapa(mapa, pontos, true);
+		
+		//Se o parâmetro de debug estiver ligado acima ele mostra uma matriz com os navios colocados
+		if(debug)
+			MapaView.ImprimeMapa(mapa, pontos, true);
+		
 		MapaView.ImprimeMapa(mapa, pontos, false);
 
 	}

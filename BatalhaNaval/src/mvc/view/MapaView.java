@@ -70,13 +70,15 @@ public class MapaView {
 
 		String comand = "";
 
-		while (!comand.toUpperCase().equals("SAIR")) {
+		while (pontos != 0) {
 
 			try {
 				out.println("Digite Linha Coluna (EX:L C)");
 				int linha = entrada.nextInt();
 				String coluna = entrada.next();
 
+				
+				
 				Navio navio = null;
 
 				try {
@@ -106,7 +108,7 @@ public class MapaView {
 
 						} else {
 							mapa[linha][col] = " -  ";
-
+							pontos--;
 						}
 					}
 

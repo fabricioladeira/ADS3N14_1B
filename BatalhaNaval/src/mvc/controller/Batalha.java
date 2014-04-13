@@ -79,7 +79,30 @@ public class Batalha {
 		Navio navioColisao = null;
 
 		try {
-			navioColisao = GetNavio(navioSorteado.getY(), navioSorteado.getX());
+
+			if (navioSorteado.getDirecao() == 1)// Vertical
+			{
+				int total = navioSorteado.getTamanho() + navioSorteado.getY();
+
+				for (int i = navioSorteado.getY(); i < total; i++) {
+					navioColisao = GetNavio(i, navioSorteado.getX());
+					
+					if(navioColisao != null)
+						return true;
+				}
+
+			} else {
+
+				int total = navioSorteado.getTamanho() + navioSorteado.getX();
+
+				for (int i = navioSorteado.getY(); i < total; i++) {
+					navioColisao = GetNavio(navioSorteado.getY(), i);
+					
+					if(navioColisao != null)
+						return true;
+				}
+
+			}
 
 			if (navioColisao != null)
 				return true;
@@ -153,7 +176,8 @@ public class Batalha {
 		}
 	}
 
-	// Verifica se tem um navio na posição e retorna ele.
+	// Retorna um navio que estiver com alguma unidade ocupando a linha e coluna
+	// selecionada
 	public static Navio GetNavio(int l, int c) {
 
 		Navio navio = null;
@@ -165,7 +189,7 @@ public class Batalha {
 					navio = navios[il][ic];
 
 					// Verifica direção dele para validar colisão
-					if (navio.getDirecao() == 1) {
+					if (navio.getDirecao() == 1) { // Veritcal
 						int destino = il + navio.getTamanho();
 						for (int y = il; y < destino; y++) {
 							if (l == y && c == ic)

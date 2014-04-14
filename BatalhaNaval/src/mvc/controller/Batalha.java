@@ -10,7 +10,7 @@ import mvc.view.MapaView;
 
 public class Batalha {
 
-	public static boolean debug = true;
+	public static boolean debug = false;
 	public static int pontos = 15;
 	public static String[][] mapa = new String[10][10];
 	public static Navio[][] navios = new Navio[10][10];

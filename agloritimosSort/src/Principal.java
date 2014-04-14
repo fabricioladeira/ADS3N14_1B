@@ -80,9 +80,9 @@ public class Principal {
 		pivo = v[ini];
 		topo = ini;
 
-		for (i = ini + 1; i <= fim; i++) {
+		for (i = ini + 1; i <= fim; i++) {		
 			
-			totComparacaoQuickSort++;			
+			totComparacaoQuickSort = totComparacaoQuickSort + 2;			
 			if (v[i] < pivo) {
 				totTrocaQuickSort++;
 				v[topo] = v[i];				
@@ -104,12 +104,13 @@ public class Principal {
 	public static int[] ordenarCrescente(int[] array) {
 
 		for (int fixo = 1; fixo <= array.length; fixo++) {
-
+			totComparacaoInsertionSort++;
+			
 			int x = fixo - 1;
 			int y = fixo;
 
 			while (y != 0 && y != array.length && array[x] > array[y]) {
-				totComparacaoInsertionSort = totComparacaoInsertionSort + 2;
+				totComparacaoInsertionSort = totComparacaoInsertionSort + 3;
 								
 				int a = array[x];
 				

@@ -51,9 +51,12 @@ public class Principal {
 		
 		
 		
+		
+		
 		System.out.println("----- Resultados  Sort \n");
 		
 		System.out.println("Quick Sort número trocas:"+ totTrocaQuickSort +"   - número de comparações: "+ totComparacaoQuickSort + " \n");
+		System.out.println("Insertion Sort número trocas:"+ totTrocaInsertionSort +"   - número de comparações: "+ totComparacaoInsertionSort + " \n");
 		
 		System.out.println("----- Resultados  Sort \n");
 
@@ -106,9 +109,14 @@ public class Principal {
 			int y = fixo;
 
 			while (y != 0 && y != array.length && array[x] > array[y]) {
-
+				totComparacaoInsertionSort = totComparacaoInsertionSort + 2;
+								
 				int a = array[x];
+				
+				totTrocaInsertionSort++;
 				array[x] = array[y];
+				
+				totTrocaInsertionSort++;
 				array[y] = a;
 				x--;
 				y--;

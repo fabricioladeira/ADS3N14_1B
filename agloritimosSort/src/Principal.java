@@ -50,8 +50,7 @@ public class Principal {
 		
 		
 		
-		
-		
+				
 		
 		System.out.println("----- Resultados  Sort \n");
 		
@@ -61,7 +60,6 @@ public class Principal {
 		System.out.println("----- Resultados  Sort \n");
 
 	}
-
 	
 	//Quick Sort
 	public static void quick_sort(int[] v, int ini, int fim) {

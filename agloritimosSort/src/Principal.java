@@ -67,13 +67,13 @@ public class Principal {
 
 		totComparacaoQuickSort++;
 		if (ini < fim) {			
-			meio = partition(v, ini, fim);
+			meio = divisao(v, ini, fim);
 			quick_sort(v, ini, meio);
 			quick_sort(v, meio + 1, fim);
 		}
 	}
 
-	public static int partition(int[] v, int ini, int fim) {
+	public static int divisao(int[] v, int ini, int fim) {
 		int pivo, topo, i;
 		pivo = v[ini];
 		topo = ini;
